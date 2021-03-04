@@ -12,12 +12,21 @@ contract PupperCoinSale is Crowdsale, MintedCrowdsale, CappedCrowdsale, TimedCro
     
 }
 
-
-
-
-
     constructor(
-        // @TODO: Fill in the constructor parameters!
+        uint rate, 
+        address payable wallet, 
+        PupperCoin token
+    )
+
+        
+        PupperCoinSale pupper_sale = new PupperCoinSale(1, wallet, token);
+        pupper_sale = address(PupperCoinSale);
+        
+        token.addMinter(pupper_sale);
+        token.renounceMinter();
+        
+    }
+
     )
         // @TODO: Pass the constructor parameters to the crowdsale contracts.
         public
